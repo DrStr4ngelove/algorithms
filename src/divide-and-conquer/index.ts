@@ -15,13 +15,17 @@ export const binarySearch = (arr: Array<number>, val: number): number => {
   let mid: number = low + Math.floor((high - low) / 2);
   // While the search space has not been exhausted
   while (low <= high) {
+    // Early exit if the value is found
     if (sortedArr[mid] === val) {
       return mid;
-    } else if (sortedArr[mid] < val) {
+    }
+    // If the value is not found, adjust the search space 
+    else if (sortedArr[mid] < val) { // Search the right half
       low = mid + 1;
-    } else {
+    } else { // Search the left half
       high = mid - 1;
     }
+    // Update the mid point
     mid = low + Math.floor((high - low) / 2);
   }
   return -1;
