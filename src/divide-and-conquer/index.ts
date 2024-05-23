@@ -5,6 +5,21 @@ Divide and Conquer:
   - This pattern can be very useful when you have a sorted array and you are searching for a value.
 */
 
+/* 
+Binary Search:
+  - Binary search is a much faster form of search
+  - Rather than eliminating one element at a time, you can eliminate half of the remaining elements at a time.
+  - Disadvantages of Binary Search:
+    - The array should be sorted.
+    - Binary search requires that the data structure being searched be stored in contiguous memory locations. 
+    - Binary search requires that the elements of the array be comparable, meaning that they must be able to be ordered.
+  - Time Complexity: 
+    - Best Case: O(1)
+    - Average Case: O(log N)
+    - Worst Case: O(log N)
+    - Auxiliary Space: O(1), If the recursive call stack is considered then the auxiliary space will be O(logN).
+*/
+
 export const iterativeBinarySearch = (arr: Array<number>, val: number): number => {
   // Precondition: arr is sorted
   const sortedArr = arr.sort((a, b) => a - b);
@@ -51,5 +66,4 @@ export const recursiveBinarySearch = (arr: Array<number>, low: number, high: num
   }
   // We reach here when the element is not present in the array
   return -1
-  
 }
