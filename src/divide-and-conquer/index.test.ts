@@ -1,4 +1,13 @@
-import { iterativeBinarySearch, recursiveBinarySearch, merge, mergeSort, partition, quickSort } from "./index";
+import { 
+  iterativeBinarySearch, 
+  recursiveBinarySearch, 
+  merge, 
+  mergeSort, 
+  partition, 
+  quickSort, 
+  recursiveCalcPower,  
+  binaryOperatorCalcPower
+} from "./index";
 describe("Divide and Conquer", () => {
   let testArray: Array<number>;
   beforeEach(() => {
@@ -100,6 +109,33 @@ describe("Divide and Conquer", () => {
       const high: number = arr.length - 1;
       const expected: Array<number> = [10, 30, 40, 50, 70, 80, 90];
       expect(quickSort(arr, low, high)).toEqual(expected);
+    })
+  })
+
+  describe("Calculate Power", () => {
+    it("recursiveCalcPower Returns expected results from positive exponent", () => {
+      const base: number = 2;
+      const exponent: number = 3;
+      const expected: number = 8;
+      expect(recursiveCalcPower(base, exponent)).toBe(expected);
+    })
+    it("recursiveCalcPower Returns expected results from negative exponent", () => {
+      const base: number = 2;
+      const exponent: number = -3;
+      const expected: number = 0.125;
+      expect(recursiveCalcPower(base, exponent)).toBe(expected);
+    })
+    it("binaryOperatorCalcPower Returns expected results from positive exponent", () => {
+      const base: number = 2;
+      const exponent: number = 3;
+      const expected: number = 8;
+      expect(binaryOperatorCalcPower(base, exponent)).toBe(expected);
+    })
+    it("binaryOperatorCalcPower Returns expected results from negative exponent", () => {
+      const base: number = 2;
+      const exponent: number = -3;
+      const expected: number = 0.125;
+      expect(binaryOperatorCalcPower(base, exponent)).toBe(expected);
     })
   })
 });

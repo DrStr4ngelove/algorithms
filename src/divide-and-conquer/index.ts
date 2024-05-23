@@ -1,9 +1,9 @@
-/*
+/***
 Divide and Conquer:
   - This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of data. 
   - This pattern can tremendously decrease time complexity.
   - This pattern can be very useful when you have a sorted array and you are searching for a value.
-*/
+***/
 
 /* 
 Binary Search:
@@ -138,6 +138,22 @@ export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> =
   return results;
 }
 
+/*
+Quick Sort:
+  - Like merge sort, exploits the fact that arrays of 0 or 1 element are always sorted
+  - Works by selecting one element (called the "pivot") and finding the index where the pivot should end up in the sorted array
+  - Once the pivot is positioned appropriately, quick sort can be applied on either side of the pivot
+  - Time Complexity:
+    - Best Case: O(n log n), When the pivot element is always the median element.
+    - Average Case: O(n log n), When the pivot element is the middle element.
+    - Worst Case: O(n^2), When the pivot element is the smallest or largest element.
+    - Space Complexity: O(log n), Additional space is required for the recursive call stack.
+  - Applications of Quick Sort:
+    - Sorting large datasets
+    - In-place sorting
+    - External sorting (when the dataset is too large to fit in memory)
+    - Quick sort is often used in programming languages to implement sort functions.
+*/
 export const quickSort = (arr: Array<number>, low: number, high: number): Array<number> => {
   if(low < high){
     // pi is partitioning index, arr[p] is now at right place
@@ -167,4 +183,51 @@ export const partition = (arr: Array<number>, low: number, high: number): number
   [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
   // Return the partition index
   return i + 1;
+}
+
+/*
+Power Calculation:
+  - Given a base and an exponent, calculate the power of the base raised to the exponent.
+  - Time Complexity: O(log |n|)
+  - Auxiliary Space: O(log |n|) , for recursive call stack
+*/
+export const recursiveCalcPower = (base: number, exponent: number): number => {
+  let temp: number;
+  // Base case
+  if(exponent === 0) {
+    return 1;
+  }
+  // Recursive case
+  temp = recursiveCalcPower(base, parseInt((exponent / 2).toString(), 10));
+  const squaredTemp: number = temp * temp;
+  // If the exponent is even
+  if(exponent % 2 === 0){
+    return squaredTemp
+  } else {
+    // If the exponent is positive
+    if(exponent > 0){
+      return base * squaredTemp
+    }
+    else{
+      // If the exponent is negative
+      return squaredTemp / base
+    }
+  }
+}
+/*
+binaryOperatorCalcPower:
+  - Time Complexity: O(log n)
+  - Auxiliary Space: O(1)
+*/
+export const binaryOperatorCalcPower = (base: number, exponent: number): number => {
+  let result: number = 1;
+  let n: number = Math.abs(exponent);
+  while(n > 0){
+    if(n % 2 === 1){
+      result *= base;
+    }
+    base *= base;
+    n = Math.floor(n / 2);
+  }
+  return exponent > 0 ? result : 1 / result;
 }
