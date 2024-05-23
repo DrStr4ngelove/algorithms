@@ -68,14 +68,7 @@ export const recursiveBinarySearch = (arr: Array<number>, low: number, high: num
   return -1
 }
 
-/* 
-Merge Sort:
-  - Merge sort is a combination of two things - merging and sorting!
-  - Exploits the fact that arrays of 0 or 1 element are always sorted
-  - Works by decomposing an array into smaller arrays of 0 or 1 elements, then building up a newly sorted array
-  - Time Complexity: O(n log n)
-  - Space Complexity: O(n)
-*/
+// Merge two sorted arrays into one sorted array 
 export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> => {
   // Create an empty array to store the results
   let results: Array<number> = [];
@@ -84,11 +77,13 @@ export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> =
   // While there are still values we haven't looked at...
   while(i < arr1.length && j < arr2.length){
     if(arr2[j] > arr1[i]){
-      // If the value in the first array is smaller than the value in the second array, push the value in the first array into the results and move on to the next value in the first array
+      // If the value in the first array is smaller than the value in the second array, 
+      // push the value in the first array into the results and move on to the next value in the first array
       results.push(arr1[i]);
       i++;
     } else {
-      // If the value in the first array is larger than the value in the second array, push the value in the second array into the results and move on to the next value in the second array
+      // If the value in the first array is larger than the value in the second array, 
+      // push the value in the second array into the results and move on to the next value in the second array
       results.push(arr2[j]);
       j++;
     }
@@ -106,6 +101,14 @@ export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> =
   return results;
 }
 
+/* 
+Merge Sort:
+  - Merge sort is a combination of two things - merging and sorting!
+  - Exploits the fact that arrays of 0 or 1 element are always sorted
+  - Works by decomposing an array into smaller arrays of 0 or 1 elements, then building up a newly sorted array
+  - Time Complexity: O(n log n)
+  - Space Complexity: O(n)
+*/
 export const mergeSort = (arr: Array<number>): Array<number> => {
   // Base case
   if(arr.length <= 1) return arr;
