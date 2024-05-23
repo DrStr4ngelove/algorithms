@@ -1,11 +1,7 @@
 // jest.config.js
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node",
   transform: {
-    "^.+\\.jsx?$": "babel-jest",
-    "^.+\\.tsx?$": "ts-jest",
-    "^.+\\.(css|scss|png|jpg|svg)$": "jest-transform-stub",
+    "^.+\\.jsx?$": "babel-jest", // Transpile JavaScript and JSX files using babel-jest
   },
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  moduleFileExtensions: ["js", "jsx", "json", "node"], // Recognize these file extensions
 };
