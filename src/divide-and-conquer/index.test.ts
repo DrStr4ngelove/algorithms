@@ -1,4 +1,4 @@
-import { iterativeBinarySearch, recursiveBinarySearch, merge, mergeSort } from "./index";
+import { iterativeBinarySearch, recursiveBinarySearch, merge, mergeSort, partition, quickSort } from "./index";
 describe("Divide and Conquer", () => {
   let testArray: Array<number>;
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe("Divide and Conquer", () => {
       expect(recursiveBinarySearch(testArray, low, high,11)).toBe(-1);
     });
     it("recursiveBinarySearch Returns expected results from unsorted arry with correct params", () => {
-      const reversedSortedArray = testArray.sort((a,b) => b-a);
+      const reversedSortedArray = structuredClone(testArray).sort((a,b) => b-a);
       const low = 0;
       const high = reversedSortedArray.length - 1;
       expect(recursiveBinarySearch(reversedSortedArray, low, high, 4)).toBe(3);
@@ -47,7 +47,7 @@ describe("Divide and Conquer", () => {
     it("merge Returns expected results", () => {
       const arr1: Array<number>  = [1, 3, 5];
       const arr2: Array<number>  = [2, 4, 6];
-      const expected: Array<number>  = testArray;
+      const expected: Array<number>  = structuredClone(testArray);
       expect(merge(arr1, arr2)).toEqual(expected);
     });
     it("merge Returns expected results with empty arrays", () => {
@@ -76,14 +76,30 @@ describe("Divide and Conquer", () => {
     });
     it("mergeSort Returns expected results from sorted array", () => {
       const arr: Array<number> = [1, 3, 5, 2, 4, 6];
-      const expected: Array<number> = testArray;
+      const expected: Array<number> = structuredClone(testArray);
       expect(mergeSort(arr)).toEqual(expected);
     })
     it("mergeSort Returns expected results from unsorted array", () => {
       // structuredClone is used to create a deep copy of the array
       const arr: Array<number> = structuredClone(testArray).sort((b,a) => a-b)
-      const expected: Array<number> = testArray;
+      const expected: Array<number> = structuredClone(testArray);
       expect(mergeSort(arr)).toEqual(expected);
+    })
+  })
+  describe("Quick Sort", () => {
+    it("partition Returns expected results", () => {
+      const arr: Array<number> = [10, 80, 30, 90, 40, 50, 70];
+      const low: number = 0;
+      const high: number = arr.length - 1;
+      const expected: number = 4;
+      expect(partition(arr, low, high)).toBe(expected);
+    })
+    it("quickSort Returns expected results", () => {
+      const arr: Array<number> = [10, 80, 30, 90, 40, 50, 70];
+      const low: number = 0;
+      const high: number = arr.length - 1;
+      const expected: Array<number> = [10, 30, 40, 50, 70, 80, 90];
+      expect(quickSort(arr, low, high)).toEqual(expected);
     })
   })
 });

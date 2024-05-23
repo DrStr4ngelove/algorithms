@@ -72,36 +72,6 @@ export const recursiveBinarySearch = (arr: Array<number>, low: number, high: num
   return -1
 }
 
-// Merge two sorted arrays into one sorted array 
-export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> => {
-  // Create an empty array to store the results
-  let results: Array<number> = [];
-  let i: number = 0;
-  let j: number = 0;
-  // While there are still values we haven't looked at...
-  while(i < arr1.length && j < arr2.length){
-    if(arr2[j] > arr1[i]){
-      // If the value in the first array is smaller than the value in the second array, 
-      // push the value in the first array into the results and move on to the next value in the first array
-      results.push(arr1[i]);
-      // Move on to the next value in the first array
-      i++;
-    } else {
-      // If the value in the first array is larger than the value in the second array, 
-      // push the value in the second array into the results and move on to the next value in the second array
-      results.push(arr2[j]);
-      // Move on to the next value in the second array
-      j++;
-    }
-  }
-  // If there are any remaining values in the first array, push them into the results
-  arr1.map(val=>results.push(val));
-  // If there are any remaining values in the second array, push them into the results
-  arr2.map(val=>results.push(val));
-  // Return the results
-  return results;
-}
-
 /* 
 Merge Sort:
   - Merge sort is a combination of two things - merging and sorting!
@@ -129,4 +99,72 @@ export const mergeSort = (arr: Array<number>): Array<number> => {
   const right: Array<number> = mergeSort(arr.slice(mid));
   // Merge the two halves
   return merge(left, right);
+}
+
+// Merge two sorted arrays into one sorted array 
+export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> => {
+  // Create an empty array to store the results
+  let results: Array<number> = [];
+  let i: number = 0;
+  let j: number = 0;
+  // While there are still values we haven't looked at...
+  while(i < arr1.length && j < arr2.length){
+    if(arr2[j] > arr1[i]){
+      // If the value in the first array is smaller than the value in the second array, 
+      // push the value in the first array into the results and move on to the next value in the first array
+      results.push(arr1[i]);
+      // Move on to the next value in the first array
+      i++;
+    } else {
+      // If the value in the first array is larger than the value in the second array, 
+      // push the value in the second array into the results and move on to the next value in the second array
+      results.push(arr2[j]);
+      // Move on to the next value in the second array
+      j++;
+    }
+  }
+  // If there are any remaining values in the first array, push them into the results
+  while(i < arr1.length){
+    results.push(arr1[i]);
+    i++;
+  }
+  // If there are any remaining values in the second array, push them into the results
+  while(j < arr2.length){
+    results.push(arr2[j]);
+    j++;
+  }
+
+  // Return the results
+  return results;
+}
+
+export const quickSort = (arr: Array<number>, low: number, high: number): Array<number> => {
+  if(low < high){
+    // pi is partitioning index, arr[p] is now at right place
+    const pi: number = partition(arr, low, high);
+    // Separately sort elements before partition and after partition
+    quickSort(arr, low, pi - 1);
+    quickSort(arr, pi + 1, high);
+  }
+  return arr
+}
+
+export const partition = (arr: Array<number>, low: number, high: number): number => {
+  // Base case
+  const pivot: number = arr[high];
+  // the right position of the pivot element so far
+  let i: number = low - 1;
+  for(let j = low; j < high; j++){
+    // If the current element is smaller than the pivot element
+    if(arr[j] < pivot){
+      // Increment the right position of the pivot element
+      i++;
+      // Swap the current element with the element at the right position of the pivot element
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  }
+  // Swap the pivot element with the element at the right position of the pivot element
+  [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+  // Return the partition index
+  return i + 1;
 }
