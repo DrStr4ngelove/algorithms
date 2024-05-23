@@ -18,6 +18,10 @@ Binary Search:
     - Average Case: O(log N)
     - Worst Case: O(log N)
     - Auxiliary Space: O(1), If the recursive call stack is considered then the auxiliary space will be O(logN).
+  - Applications of Binary Search Algorithm:
+    - Binary search can be used as a building block for more complex algorithms used in machine learning, such as algorithms for training neural networks or finding the optimal hyperparameters for a model.
+    - It can be used for searching in computer graphics such as algorithms for ray tracing or texture mapping.
+    - It can be used for searching a database.
 */
 
 export const iterativeBinarySearch = (arr: Array<number>, val: number): number => {
@@ -80,24 +84,21 @@ export const merge = (arr1: Array<number>, arr2: Array<number>): Array<number> =
       // If the value in the first array is smaller than the value in the second array, 
       // push the value in the first array into the results and move on to the next value in the first array
       results.push(arr1[i]);
+      // Move on to the next value in the first array
       i++;
     } else {
       // If the value in the first array is larger than the value in the second array, 
       // push the value in the second array into the results and move on to the next value in the second array
       results.push(arr2[j]);
+      // Move on to the next value in the second array
       j++;
     }
   }
   // If there are any remaining values in the first array, push them into the results
-  while(i < arr1.length){
-    results.push(arr1[i]);
-    i++;
-  }
+  arr1.map(val=>results.push(val));
   // If there are any remaining values in the second array, push them into the results
-  while(j < arr2.length){
-    results.push(arr2[j]);
-    j++;
-  }
+  arr2.map(val=>results.push(val));
+  // Return the results
   return results;
 }
 
@@ -106,9 +107,18 @@ Merge Sort:
   - Merge sort is a combination of two things - merging and sorting!
   - Exploits the fact that arrays of 0 or 1 element are always sorted
   - Works by decomposing an array into smaller arrays of 0 or 1 elements, then building up a newly sorted array
-  - Time Complexity: O(n log n)
-  - Space Complexity: O(n)
+  - Time Complexity:
+    - Best Case: O(n log n), When the array is already sorted or nearly sorted.
+    - Average Case: O(n log n), When the array is randomly ordered.
+    - Worst Case: O(n log n), When the array is sorted in reverse order.
+    - Space Complexity: O(n), Additional space is required for the temporary array used during merging.
+  - Applications of Merge Sort:
+    - Sorting large datasets
+    - External sorting (when the dataset is too large to fit in memory)
+    - Inversion counting (counting the number of inversions in an array)
+    - Finding the median of an array
 */
+
 export const mergeSort = (arr: Array<number>): Array<number> => {
   // Base case
   if(arr.length <= 1) return arr;
