@@ -2,6 +2,8 @@
 module.exports = {
   transform: {
     "^.+\\.jsx?$": "babel-jest", // Transpile JavaScript and JSX files using babel-jest
+    "^.+\\.(ts|tsx)$": "ts-jest",
   },
-  moduleFileExtensions: ["js", "jsx", "json", "node"], // Recognize these file extensions
+  preset: "ts-jest",
+  moduleFileExtensions: ["js", "jsx", "json", "node", "ts", "tsx"], // Recognize these file extensions
 };

@@ -7,7 +7,7 @@
 // search([1,2,3,4,5,6],6) // 5
 // search([1,2,3,4,5,6],11) // -1
 
-export const binarySearch = (arr, val) => {
+export const binarySearch = (arr: Array<number>, val: number) => {
   let left = 0;
   let right = arr.length - 1;
   let middle = Math.floor((left + right) / 2);

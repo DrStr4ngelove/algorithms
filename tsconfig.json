@@ -1,7 +1,9 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "jsx": "react",
-    }
+  "compilerOptions": {
+    "outDir": "build",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  }
 }
-  
