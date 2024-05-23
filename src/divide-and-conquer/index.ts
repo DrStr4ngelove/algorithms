@@ -5,7 +5,7 @@ Divide and Conquer:
   - This pattern can be very useful when you have a sorted array and you are searching for a value.
 */
 
-export const binarySearch = (arr: Array<number>, val: number): number => {
+export const iterativeBinarySearch = (arr: Array<number>, val: number): number => {
   // Precondition: arr is sorted
   const sortedArr = arr.sort((a, b) => a - b);
   // Access to any element of the data structure takes constant time: O(n)
@@ -30,3 +30,26 @@ export const binarySearch = (arr: Array<number>, val: number): number => {
   }
   return -1;
 };
+
+// Recursive Binary Search
+export const recursiveBinarySearch = (arr: Array<number>, low: number, high: number, val: number): number => {
+  // Precondition: arr is sorted
+  const sortedArr = arr.sort((a, b) => a - b);
+  // Base case
+  if(high >= low){
+    // Find the middle index
+    let mid: number = low + Math.floor((high - low) / 2);
+    if(sortedArr[mid] === val){
+      return mid;
+    }
+    // If the element is smaller than the middle element, then it can only be present in the left subarray
+    if(sortedArr[mid] > val){
+      return recursiveBinarySearch(sortedArr, low, mid - 1, val);
+    }
+    // Else the element can only be present in the right subarray
+    return recursiveBinarySearch(sortedArr, mid + 1, high, val);
+  }
+  // We reach here when the element is not present in the array
+  return -1
+  
+}
