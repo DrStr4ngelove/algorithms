@@ -1,10 +1,13 @@
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "outDir": "build",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true
-  }
+    "compilerOptions": {
+        "target": "ES2021",
+        "lib": ["ES2021", "DOM"],
+        "jsx": "react",
+        "module": "Node16",
+        "outDir": "build",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node16",
+        "esModuleInterop": true
+    }
 }
