@@ -7,6 +7,7 @@ import {
     quickSort,
     recursiveCalcPower,
     binaryOperatorCalcPower,
+    bubbleSort,
 } from './index'
 describe('Divide and Conquer', () => {
     let testArray: Array<number>
@@ -129,7 +130,6 @@ describe('Divide and Conquer', () => {
             expect(quickSort(arr, low, high)).toEqual(expected)
         })
     })
-
     describe('Calculate Power', () => {
         it('recursiveCalcPower Returns expected results from positive exponent', () => {
             const base: number = 2
@@ -154,6 +154,39 @@ describe('Divide and Conquer', () => {
             const exponent: number = -3
             const expected: number = 0.125
             expect(binaryOperatorCalcPower(base, exponent)).toBe(expected)
+        })
+    })
+    describe('Bubble Sort', () => {
+        it('bubbleSort Returns expected results from sorted array', () => {
+            const arr: Array<number> = JSON.parse(JSON.stringify(testArray))
+            const expected: Array<number> = JSON.parse(
+                JSON.stringify(testArray)
+            )
+            expect(bubbleSort(arr)).toEqual(expected)
+        })
+        it('bubbleSort Returns expected results from unsorted array', () => {
+            const arr: Array<number> = JSON.parse(
+                JSON.stringify(testArray)
+            ).sort((a: number, b: number) => b - a)
+            const expected: Array<number> = JSON.parse(
+                JSON.stringify(testArray)
+            )
+            expect(bubbleSort(arr)).toEqual(expected)
+        })
+        it('bubbleSort Returns expected results from empty array', () => {
+            const arr: Array<number> = []
+            const expected: Array<number> = []
+            expect(bubbleSort(arr)).toEqual(expected)
+        })
+        it('bubbleSort Returns expected results from array with one element', () => {
+            const arr: Array<number> = [5]
+            const expected: Array<number> = [5]
+            expect(bubbleSort(arr)).toEqual(expected)
+        })
+        it('bubbleSort Returns expected results from array with duplicates', () => {
+            const arr: Array<number> = [3, 1, 2, 3, 4, 2]
+            const expected: Array<number> = [1, 2, 2, 3, 3, 4]
+            expect(bubbleSort(arr)).toEqual(expected)
         })
     })
 })

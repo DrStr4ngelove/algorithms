@@ -256,7 +256,7 @@ export const binaryOperatorCalcPower = (
 }
 
 // bubble sort
-const bubbleSort = (arr: Array<number>): Array<number> => {
+export const bubbleSort = (arr: Array<number>): Array<number> => {
     let isSwapped: boolean
     for (let i = 0; i < arr.length; i++) {
         isSwapped = false
